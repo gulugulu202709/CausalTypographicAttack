@@ -1,0 +1,35 @@
+{
+  "schema_version": "ai-research-writing/paper-state-v1",
+  "mode": "submission",
+  "stage": "verified-code-candidate-with-blockers",
+  "target_venue": "ICLR 2027",
+  "main_tex": null,
+  "bibliography": null,
+  "scope": "Code-only release preparation; manuscript not supplied.",
+  "required_artifacts": [
+    "docs/REPRODUCIBILITY.md",
+    "docs/DATA_AVAILABILITY.md",
+    "submission_readiness.md"
+  ],
+  "blockers": [
+    "Code license not selected",
+    "Original registered pixels/manifests not fully public",
+    "Final manuscript table mapping not supplied",
+    "GPU rerun not performed"
+  ],
+  "build": {
+    "status": "not-applicable",
+    "command": null,
+    "pdf": null,
+    "external_inputs": [],
+    "reason": "No manuscript in this task; code checks recorded separately"
+  },
+  "code_validation": {
+    "replay_stages_passed": 6,
+    "cpu_tests_passed": 90,
+    "cpu_tests_skipped": 1,
+    "skip_reason": "Linux integration font unavailable on Windows",
+    "gpu_inference": "not-run",
+    "manuscript": "not-supplied"
+  }
+}

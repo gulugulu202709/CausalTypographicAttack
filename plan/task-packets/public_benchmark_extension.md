@@ -1,0 +1,71 @@
+# Public benchmark extension task packet
+
+## Goal
+
+Test Evidence-CTA under a public, question-conditioned protocol without
+claiming that incomparable PPIA, REALM, RIO-Bench, and RVTA ASR values share a
+denominator or threat model.
+
+## Frozen public sources
+
+| Source | Local commit | Role | Current boundary |
+|---|---|---|---|
+| RIO-Bench | `2425419ddb5b7247121290f7ead5b4cd137f1a55` | Primary public read-or-ignore protocol and official scorer | Dataset is CC-BY-4.0; code repository has no top-level license file in this checkout. |
+| SceneTAP | `cd2b72285b424ca674ae2ec2c05b2c55291613c7` | Full scene-coherent baseline | Requires SoM, TextDiffuser-2, and a multimodal planner; checkout has no top-level license file. |
+| REALM | `e3aea21b9e0c0c4e2bec80c128221ac297fe5c69` | Separate NIPS2017/ImageNet red-team track | Its 12-attack ASR is not directly comparable with VQA clean-conditioned ASR; checkout has no top-level license file. |
+| PPIA | `7291d92ee05c4b9079ef824e0b4bd12e8e14316c` | Physical-environment external validation target | README says the code is still being organized and cannot yet run completely. The repository license file is Apache-2.0 despite an MIT README badge. |
+
+## Registered RIO Obj-MC pilot
+
+- Split: official `val`.
+- Selection: canonical first 100 question IDs from the clean validation config
+  at a recorded Hugging Face dataset revision. This is explicitly a pilot, not
+  a population estimate; the later 300--500 run requires a preregistered
+  broader sampling rule.
+- Official conditions: clean, RIO easy/medium/hard typography, and the current
+  public precomputed hard SceneTAP validation configuration.
+- Added matched conditions: naive typography, in-house scene-coherent plaque,
+  direct causal claim, and Evidence-CTA.
+- Target: the official hard attack word when it corresponds to a wrong MC
+  option; deterministic wrong option otherwise.
+- Queries: one original question per condition, no response-adaptive search.
+- Models: Qwen2.5-VL-3B/7B, LLaVA-OneVision-1.5-8B, and InternVL2-8B with
+  configs `question_rio_objmc_{qwen3,qwen7,llava,internvl}_n100.yaml`.
+- Primary metric: official RIO Obj-MC accuracy and clean-conditioned ASR.
+- Secondary: targeted ASR and exact paired McNemar tests.
+- Completeness gate: `scripts/validate_question_run.py` must confirm exact
+  manifest/prediction key equality, complete provenance, and matching hashes
+  before official scoring or paper table generation.
+- Expansion gate: run 100 first; expand to 300--500 only after complete logs,
+  valid provenance, and no condition-pairing failures.
+
+## Simulated and real physical tracks
+
+- Simulated capture profiles use deterministic perspective, illumination,
+  Gaussian blur, downsampling, and JPEG degradation. They must be reported as
+  simulated camera degradation.
+- Real physical validation requires printed/displayed attacks, a fixed camera
+  protocol, documented distances/angles/lighting, and raw photographs. No
+  simulated frame may enter the physical table.
+
+## SceneTAP decision
+
+The current Hugging Face dataset card exposes
+`obj_attack__mc_hard__scenetap` for validation. It is used verbatim and labeled
+RIO SceneTAP (precomputed). The `scene_coherent` condition remains a separate
+in-house plaque and must not be relabeled as SceneTAP.
+
+## Human evaluation gate
+
+Three independent annotators must complete the existing randomized forms.
+The analyzer requires all three response files and rejects incomplete packs.
+No model-generated or author-filled response substitutes for independent
+human judgments.
+
+## Paper claims allowed before new runs
+
+- The public protocol adapter and simulated-capture generator are implemented
+  and locally tested.
+- No RIO, REALM, PPIA, full SceneTAP, or physical ASR may be reported until
+  complete raw logs exist.
+- Existing RVTA numbers remain internal benchmark results, not public SOTA.
