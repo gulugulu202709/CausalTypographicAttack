@@ -1,0 +1,12 @@
+# CPU result replay and scoped regression checks; Python 3.12.
+# These are verification-environment pins, not the original GPU experiment lock.
+numpy==1.26.4
+Pillow==12.3.0
+PyYAML==6.0.3
+pytest==8.4.2
+# Transitive pytest dependencies pinned for repeatable verification installs.
+colorama==0.4.6; sys_platform == "win32"
+iniconfig==2.3.0
+packaging==26.3
+pluggy==1.6.0
+Pygments==2.21.0

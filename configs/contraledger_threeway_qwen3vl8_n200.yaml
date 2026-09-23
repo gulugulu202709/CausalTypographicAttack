@@ -1,0 +1,14 @@
+source_manifest: runs/contraledger_threeway_n200_v1frozen/manifest.jsonl
+output_root: runs/contraledger_threeway_qwen3vl8_n200_v1
+expected_items: 200
+seed: 20260904
+model:
+  adapter: qwen3vl
+  # Original downloaded snapshot revision: 0c351dd01ed87e9c1b53cbc748cba10e6187ff3b
+  name_or_path: models/Qwen3-VL-8B-Instruct
+  device: cuda:0
+  dtype: bfloat16
+  min_pixels: 200704
+  max_pixels: 602112
+  max_new_tokens: 96
+  do_sample: false
