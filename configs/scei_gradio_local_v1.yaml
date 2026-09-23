@@ -1,0 +1,22 @@
+default_max_rounds: 2
+default_renderer: scene
+default_counterfactual_family: range_threshold
+max_planner_attempts: 3
+
+planner_model:
+  adapter: qwen25vl
+  name_or_path: Qwen/Qwen2.5-VL-3B-Instruct
+  device: cuda:0
+  dtype: bfloat16
+  max_new_tokens: 360
+  min_pixels: 200704
+  max_pixels: 602112
+
+victim_model:
+  adapter: qwen25vl
+  name_or_path: Qwen/Qwen2.5-VL-3B-Instruct
+  device: cuda:0
+  dtype: bfloat16
+  max_new_tokens: 360
+  min_pixels: 200704
+  max_pixels: 602112
